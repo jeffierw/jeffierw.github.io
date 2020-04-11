@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="博客," />
+  <meta name="keywords" content="js,学习笔记," />
 
 
 
@@ -79,16 +79,17 @@
 
 
 
-<meta name="description" content="前言  本文只是本渣渣搭建博客所踩过的坑，并不是教程，所以本渣渣采用W10，并没有逼格高的Mac和linux的内容。 使用弯弯的hexo和github好处很多，比如免费，不需要服务器，全是静态文件，也不用担心不安全，当然最好能在本地有备份。 域名不舒服可以自己随意绑定别的域名。">
+<meta name="description" content="作用域作用域是指程序源代码中定义变量的区域。 作用域规定了如何查找变量，也就是确定当前执行代码对变量的访问权限。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于hexo及github-pages搭建静态博客">
-<meta property="og:url" content="http://jeffierw.github.io/2017/03/02/%E5%9F%BA%E4%BA%8Ehexo%E5%8F%8Agithub-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:title" content="JavaScript学习笔记之词法作用域和动态作用域">
+<meta property="og:url" content="http://jeffierw.github.io/2017/07/19/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%8A%A8%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F/index.html">
 <meta property="og:site_name" content="yepW&#39;s blog">
-<meta property="og:description" content="前言  本文只是本渣渣搭建博客所踩过的坑，并不是教程，所以本渣渣采用W10，并没有逼格高的Mac和linux的内容。 使用弯弯的hexo和github好处很多，比如免费，不需要服务器，全是静态文件，也不用担心不安全，当然最好能在本地有备份。 域名不舒服可以自己随意绑定别的域名。">
-<meta property="article:published_time" content="2017-03-02T06:47:09.000Z">
-<meta property="article:modified_time" content="2020-04-11T10:58:54.929Z">
+<meta property="og:description" content="作用域作用域是指程序源代码中定义变量的区域。 作用域规定了如何查找变量，也就是确定当前执行代码对变量的访问权限。">
+<meta property="article:published_time" content="2017-07-19T09:13:51.000Z">
+<meta property="article:modified_time" content="2020-04-11T10:52:15.787Z">
 <meta property="article:author" content="yepW">
-<meta property="article:tag" content="博客">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://jeffierw.github.io/2017/03/02/基于hexo及github-pages搭建静态博客/"/>
+  <link rel="canonical" href="http://jeffierw.github.io/2017/07/19/JavaScript学习笔记之词法作用域和动态作用域/"/>
 
 
 
 
 
-  <title>基于hexo及github-pages搭建静态博客 | yepW's blog</title>
+  <title>JavaScript学习笔记之词法作用域和动态作用域 | yepW's blog</title>
   
 
 
@@ -272,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jeffierw.github.io/2017/03/02/%E5%9F%BA%E4%BA%8Ehexo%E5%8F%8Agithub-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/">
+    <link itemprop="mainEntityOfPage" href="http://jeffierw.github.io/2017/07/19/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%8A%A8%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yepW">
@@ -289,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">基于hexo及github-pages搭建静态博客</h1>
+          <h1 class="post-title" itemprop="name headline">JavaScript学习笔记之词法作用域和动态作用域</h1>
         
 
         <div class="post-meta">
@@ -301,8 +302,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-02T14:47:09+08:00">
-                2017-03-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-19T17:13:51+08:00">
+                2017-07-19
               </time>
             
 
@@ -312,39 +313,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index">
-                    <span itemprop="name">博客</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -352,7 +320,7 @@
 
           
           
-             <span id="/2017/03/02/%E5%9F%BA%E4%BA%8Ehexo%E5%8F%8Agithub-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/" class="leancloud_visitors" data-flag-title="基于hexo及github-pages搭建静态博客">
+             <span id="/2017/07/19/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%8A%A8%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F/" class="leancloud_visitors" data-flag-title="JavaScript学习笔记之词法作用域和动态作用域">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -383,50 +351,27 @@
       
 
       
-        <p><strong>前言</strong></p>
-<ol>
-<li>本文只是本渣渣搭建博客所踩过的坑，并不是教程，所以本渣渣采用W10，并没有逼格高的Mac和linux的内容。</li>
-<li>使用弯弯的hexo和github好处很多，比如免费，不需要服务器，全是静态文件，也不用担心不安全，当然最好能在本地有备份。</li>
-<li>域名不舒服可以自己随意绑定别的域名。<a id="more"></a> 
-</li>
-</ol>
+        <h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>作用域是指程序源代码中定义变量的区域。</p>
+<p>作用域规定了如何查找变量，也就是确定当前执行代码对变量的访问权限。</p>
+<a id="more"></a>
+
+<p>JavaScript 采用词法作用域(lexical scoping)，也就是静态作用域。</p>
+<h3 id="静态作用域与动态作用域"><a href="#静态作用域与动态作用域" class="headerlink" title="静态作用域与动态作用域"></a>静态作用域与动态作用域</h3><p>因为 JavaScript 采用的是词法作用域，函数的作用域在函数定义的时候就决定了。</p>
+<p>而与词法作用域相对的是动态作用域，函数的作用域是在函数调用的时候才决定的。</p>
+<p>看个例子就能明白之间的区别：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> value = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> value = <span class="number">2</span>;</span><br><span class="line">    foo();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bar();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 结果是 ???</span></span><br></pre></td></tr></table></figure>
+
+<p>假设JavaScript采用静态作用域，让我们分析下执行过程：</p>
+<p>执行 foo 函数，先从 foo 函数内部查找是否有局部变量 value，如果没有，就根据书写的位置，查找上面一层的代码，也就是 value 等于 1，所以结果会打印 1。</p>
+<p>假设JavaScript采用动态作用域，让我们分析下执行过程：</p>
+<p>执行 foo 函数，依然是从 foo 函数内部查找是否有局部变量 value。如果没有，就从调用函数的作用域，也就是 bar 函数内部查找 value 变量，所以结果会打印 2。</p>
+<p>前面我们已经说了，JavaScript采用的是静态作用域，所以这个例子的结果是 1。</p>
+<h3 id="动态作用域"><a href="#动态作用域" class="headerlink" title="动态作用域"></a>动态作用域</h3><p>也许你会好奇什么语言是动态作用域？</p>
+<p>bash 就是动态作用域，不信的话，把下面的脚本存成例如 scope.bash，然后进入相应的目录，用命令行执行 <code>bash ./scope.bash</code>，看看打印的值是多少。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">value=1</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span> () &#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$value</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">bar</span></span> () &#123;</span><br><span class="line">    <span class="built_in">local</span> value=2;</span><br><span class="line">    foo;</span><br><span class="line">&#125;</span><br><span class="line">bar</span><br></pre></td></tr></table></figure>
+
 <hr>
-<p><strong>准备</strong></p>
-<ul>
-<li>注册github.</li>
-<li>安装node.js, git.</li>
-</ul>
-<hr>
-<p><strong>github上的操作</strong></p>
-<ol>
-<li><p>新建一个名为“你的用户名.github.io”的仓库，这是必须的。</p>
-</li>
-<li><p>随便在哪鼠标右键点击”git bash here”,执行以下命令：</p>
-<p> <code>$ cd ~/. ssh</code> #嗯没提示是最好的</p>
-<p> <code>ssh-keygen -t rsa -C &quot;邮件地址&quot;</code> #这是注册github用的邮箱地址<br>接着三次回车：生成文件“id_rsa.pub”，在用户(users)目录里找到”.ssh\id_rsa.pub”文件，记事本打开复制里面的内容。如果没找到pub文件，请设置显示隐藏文件。</p>
-</li>
-<li><p>进入github主页-&gt;SSH and GPG keys -&gt; New SSH key：输入刚才复制的内容，title随便写。</p>
-</li>
-<li><p>测试是否本地连接github成功，命令行输入：</p>
-<p> <code>$ ssh -T git@github.com</code></p>
-<p>提示<code>Are you sure you want to continue connecting (yes/no)?</code>输入yes回车，然后显示这个就是配置成功了：</p>
-<p> <code>Hi jeffierw! You’ve successfully authenticated, but GitHub does not provide shell access.</code> </p>
-</li>
-</ol>
-<hr>
-<p><strong>hexo部分</strong></p>
-<ol>
-<li>安装hexo<br> <code>$ npm install -g hexo</code></li>
-<li>在硬盘随便哪里建立一个文件最好起名叫hexo或者blog,我这里是在D:/hexo，然后分别执行：<br> <code>$ cd /d/hexo/</code><br> <code>$ hexo init</code><br>hexo会自动下载许多文件到你建立的文件夹里。</li>
-<li>修改一下主题，我用的是国内某大神letiantian基于国外某大神daleanthony修改的响应式主题，我很喜欢这种风格，推荐大家使用：<br> <code>$ git clone https://github.com/letiantian/huno.git</code><br>然后进入根目录的-config.yml文件(这里必须使用sublime或vim等软件打开，因为可以更改utf-8格式，记事本打开修改内容容易乱码)，修改里面的<code>theme: landscape</code>为<code>theme: huno</code>,执行 <code>hexo g</code>重新生成。(这里又有坑，这个文件里面更改每一项前面都要有个半角空格)<br>然后继续更改配置：<br> <code>deploy:</code><br> <code>type: git</code><br> <code>repository: git@github.com:jeffierw/jeffierw.github.io.git</code><br> <code>branch: master</code><br>(这里的仓库输入自己的用户名，我这的是jeffierw)<br>然后在命令行输入：<br> <code>$ npm install hexo-deployer-git --save</code><br>安装这个东西。<br>最后 <code>hexo d -g</code> 全部提交。</li>
-</ol>
-<hr>
-<p><strong>写博客</strong></p>
-<ol>
-<li>写博客工具我推荐sublime无需安装轻量化支持markdown语法</li>
-<li>看一下简单的markdown语法。</li>
-<li>每次写文章只需去<code>d:/hexo/source/_posts</code>下创建md文件完成后<code>hexo d -g</code>上传即可。创建文章也可以<code>hexo new post &quot;文件名&quot;</code></li>
-</ol>
+<p>该学习笔记用于本人理解和回顾原生js相关底层知识或者难点，如若有错误或不严谨的地方，请务必指正，十分感谢。</p>
 
       
     </div>
@@ -444,7 +389,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag"># 博客</a>
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
           
         </div>
       
@@ -457,14 +404,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/07/11/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE/" rel="next" title="JavaScript学习笔记之原型与原型链">
+                <i class="fa fa-chevron-left"></i> JavaScript学习笔记之原型与原型链
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/05/CSS%E7%AE%80%E5%8D%95%E5%B8%83%E5%B1%80/" rel="prev" title="CSS简单布局">
-                CSS简单布局 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/20/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E6%A0%88/" rel="prev" title="JavaScript学习笔记之执行上下文栈">
+                JavaScript学习笔记之执行上下文栈 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -522,8 +473,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -597,6 +557,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域"><span class="nav-number">1.</span> <span class="nav-text">作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态作用域与动态作用域"><span class="nav-number">1.1.</span> <span class="nav-text">静态作用域与动态作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态作用域"><span class="nav-number">1.2.</span> <span class="nav-text">动态作用域</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
