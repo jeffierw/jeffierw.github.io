@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="前言当JavaScript代码执行一段可执行代码(executable code)时，会创建对应的执行上下文(execution context)。">
+<meta name="description" content="前言在《JavaScript学习笔记之执行上下文栈》中讲到，当JavaScript代码执行一段可执行代码(executable code)时，会创建对应的执行上下文(execution context)。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript学习笔记之作用域链">
-<meta property="og:url" content="http://jeffierw.github.io/2017/07/25/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/index.html">
+<meta property="og:title" content="JavaScript学习笔记之关于this">
+<meta property="og:url" content="http://jeffierw.github.io/2017/08/10/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%85%B3%E4%BA%8Ethis/index.html">
 <meta property="og:site_name" content="yepW&#39;s blog">
-<meta property="og:description" content="前言当JavaScript代码执行一段可执行代码(executable code)时，会创建对应的执行上下文(execution context)。">
-<meta property="article:published_time" content="2017-07-25T11:00:13.000Z">
-<meta property="article:modified_time" content="2020-04-11T11:55:00.544Z">
+<meta property="og:description" content="前言在《JavaScript学习笔记之执行上下文栈》中讲到，当JavaScript代码执行一段可执行代码(executable code)时，会创建对应的执行上下文(execution context)。">
+<meta property="article:published_time" content="2017-08-10T11:53:01.000Z">
+<meta property="article:modified_time" content="2020-04-11T12:10:59.605Z">
 <meta property="article:author" content="yepW">
 <meta property="article:tag" content="js">
 <meta property="article:tag" content="学习笔记">
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://jeffierw.github.io/2017/07/25/JavaScript学习笔记之作用域链/"/>
+  <link rel="canonical" href="http://jeffierw.github.io/2017/08/10/JavaScript学习笔记之关于this/"/>
 
 
 
 
 
-  <title>JavaScript学习笔记之作用域链 | yepW's blog</title>
+  <title>JavaScript学习笔记之关于this | yepW's blog</title>
   
 
 
@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jeffierw.github.io/2017/07/25/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/">
+    <link itemprop="mainEntityOfPage" href="http://jeffierw.github.io/2017/08/10/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%85%B3%E4%BA%8Ethis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yepW">
@@ -290,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaScript学习笔记之作用域链</h1>
+          <h1 class="post-title" itemprop="name headline">JavaScript学习笔记之关于this</h1>
         
 
         <div class="post-meta">
@@ -302,8 +302,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-25T19:00:13+08:00">
-                2017-07-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T19:53:01+08:00">
+                2017-08-10
               </time>
             
 
@@ -353,7 +353,7 @@
 
           
           
-             <span id="/2017/07/25/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/" class="leancloud_visitors" data-flag-title="JavaScript学习笔记之作用域链">
+             <span id="/2017/08/10/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%85%B3%E4%BA%8Ethis/" class="leancloud_visitors" data-flag-title="JavaScript学习笔记之关于this">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -384,34 +384,32 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>当JavaScript代码执行一段可执行代码(executable code)时，会创建对应的执行上下文(execution context)。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在《JavaScript学习笔记之执行上下文栈》中讲到，当JavaScript代码执行一段可执行代码(executable code)时，会创建对应的执行上下文(execution context)。</p>
 <a id="more"></a>
 
-<p>对于每个执行上下文，都有三个重要属性：</p>
+<p>对于每个执行上下文，都有三个重要属性</p>
 <ul>
 <li>变量对象(Variable object，VO)</li>
 <li>作用域链(Scope chain)</li>
 <li>this</li>
 </ul>
-<p>今天重点讲讲作用域链。</p>
-<h2 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h2><p>当查找变量的时候，会先从当前上下文的变量对象中查找，如果没有找到，就会从父级(词法层面上的父级)执行上下文的变量对象中查找，一直找到全局上下文的变量对象，也就是全局对象。这样由多个执行上下文的变量对象构成的链表就叫做作用域链。</p>
-<p>下面，让我们以一个函数的创建和激活两个时期来讲解作用域链是如何创建和变化的。</p>
-<h3 id="函数创建"><a href="#函数创建" class="headerlink" title="函数创建"></a>函数创建</h3><p>在《JavaScript学习笔记之词法作用域和动态作用域》中讲到，函数的作用域在函数定义的时候就决定了。</p>
-<p>这是因为函数有一个内部属性 [[scope]]，当函数创建的时候，就会保存所有父变量对象到其中，你可以理解 [[scope]] 就是所有父变量对象的层级链，但是注意：[[scope]] 并不代表完整的作用域链！</p>
-<p>举个栗子：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>今天讲讲 this</p>
+<h2 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h2><p>我们可以简单的理解 this 为调用函数的对象，</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">1</span>,</span><br><span class="line">    b: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">              <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>函数创建时，各自的[[scope]]为：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">foo.[[scope]] = [</span><br><span class="line">  globalContext.VO</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">bar.[[scope]] = [</span><br><span class="line">    fooContext.AO,</span><br><span class="line">    globalContext.VO</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p>1、作为对象调用时，指向该对象 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obj.b(); <span class="comment">// 指向obj</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="函数激活"><a href="#函数激活" class="headerlink" title="函数激活"></a>函数激活</h3><p>当函数激活时，进入函数上下文，创建 VO/AO 后，就会将活动对象添加到作用链的前端。</p>
-<p>这时候执行上下文的作用域链，我们命名为 Scope：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Scope = [AO].concat([[Scope]]);</span><br></pre></td></tr></table></figure>
+<p>2、作为函数调用, 指向全局window</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = obj.b; </span><br><span class="line">b(); <span class="comment">// 指向全局window</span></span><br></pre></td></tr></table></figure>
 
-<p>其中<em>concat</em>() 方法用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组。</p>
-<p>至此，作用域链创建完毕。</p>
-<hr>
-<p>该学习笔记用于本人理解和回顾原生js相关底层知识或者难点，如若有错误或不严谨的地方，请务必指正，十分感谢。</p>
+<p>3、作为构造函数调用,指向当前实例对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> Fun(); <span class="comment">// this指向当前实例对象</span></span><br></pre></td></tr></table></figure>
+
+<p>4、作为call与apply调用,</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obj.b.apply(object, []); <span class="comment">// this指向当前的object</span></span><br></pre></td></tr></table></figure>
+
+<p>目前水平有限，对于this的理解只能从调用场景上来理解，未来理解深刻时再补充。</p>
 
       
     </div>
@@ -444,8 +442,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/20/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E6%A0%88/" rel="next" title="JavaScript学习笔记之执行上下文栈">
-                <i class="fa fa-chevron-left"></i> JavaScript学习笔记之执行上下文栈
+              <a href="/2017/07/25/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/" rel="next" title="JavaScript学习笔记之作用域链">
+                <i class="fa fa-chevron-left"></i> JavaScript学习笔记之作用域链
               </a>
             
           </div>
@@ -454,8 +452,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/10/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%85%B3%E4%BA%8Ethis/" rel="prev" title="JavaScript学习笔记之关于this">
-                JavaScript学习笔记之关于this <i class="fa fa-chevron-right"></i>
+              <a href="/2017/08/15/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E9%97%AD%E5%8C%85/" rel="prev" title="JavaScript学习笔记之闭包">
+                JavaScript学习笔记之闭包 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -607,7 +605,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域链"><span class="nav-number">2.</span> <span class="nav-text">作用域链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数创建"><span class="nav-number">2.1.</span> <span class="nav-text">函数创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数激活"><span class="nav-number">2.2.</span> <span class="nav-text">函数激活</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this指向"><span class="nav-number">2.</span> <span class="nav-text">this指向</span></a></li></ol></div>
             
 
           </div>
